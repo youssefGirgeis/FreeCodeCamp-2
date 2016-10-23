@@ -35,6 +35,23 @@ function diffArray(arr1, arr2){
 }
 
 
+/* Another Solution: best way to learn is to look at other's code 
+
+function diffArray(arr1, arr2){
+    
+    var newArr = arr1.concat(arr2);
+    
+    function check(item){
+        
+        if(arr1.indexOf(item) === -1 || arr2.indexOf(item) === -1){
+            return item;
+        }
+    }
+    
+    return newArr.filter(check);
+} */
+
+
 diffArray([1, 2, 3, 5, 4], [1, 2, 3, 5]);
 diffArray(["pink wool", "dead shrub"], ["diorite", "andesite", "grass", "dirt", "dead shrub"]);
 diffArray([1, "calf", 3, "piglet"], [7, "filly"]);
