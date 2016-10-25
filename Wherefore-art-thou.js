@@ -9,18 +9,38 @@ For example, if the first argument is [{ first: "Romeo", last: "Montague" }, { f
 function whatIsInAName(collection, source) {
   
     var arr = [];
+    var sourceKeys = Object.keys(source);
+
+    for(var i =0; i< collection.length; i++){
     
-    for(var i = 0; i<collection.length; i++){
+        var collectionKeys = Object.keys(collection[i]);
         
-        console.log(Object.keys(collection[i]));
+        if(collectionKeys.length >= sourceKeys.length){
+            
+            var counter = 0;
+        
+            for(var sourceProp in source){
+
+                for(var collectionProp in collection[i]){
+                    
+                    if(sourceProp === collectionProp && source[sourceProp] === collection[i][collectionProp]){
+                        counter++;
+                    }
+                }
+            }
+            
+            if(counter === sourceKeys.length){
+                arr.push(collection[i]);
+            }
+        }
     }
-  
     
-    
-  
-  return arr;
+  console.log(arr);
+  //return arr;
 }
 
-
-
+whatIsInAName([{ "a": 1, "b": 2 }, { "a": 1 }, { "a": 1, "b": 2, "c": 2 }], { "a": 1, "b": 2 });
+whatIsInAName([{ "a": 1, "b": 2 }, { "a": 1 }, { "a": 1, "b": 2, "c": 2 }], { "a": 1, "c": 2 });
+whatIsInAName([{ "a": 1 }, { "a": 1 }, { "a": 1, "b": 2 }], { "a": 1 });
 whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });
+
